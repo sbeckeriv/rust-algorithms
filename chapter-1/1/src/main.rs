@@ -29,8 +29,8 @@ fn main() {
     //copy to another arra
     //let array2 = array.clone();
     let mut array2: Vec<u32> =  Vec::with_capacity(array.len());
-    for n in (0..array.len()){
-        array2.insert(n,array.get(n).unwrap().clone())
+    for n in &array{
+        array2.push(n.clone())
     }
 
     //revrse theelements within the array
@@ -42,22 +42,23 @@ fn main() {
 
     let a = vec![vec![1,1], vec![2,2]];
     let b = vec![vec![3,3], vec![4,4]];
-    let mut c = vec![Vec::<i32>::with_capacity(2), Vec::<i32>::with_capacity(2)];
+    let mut c = vec![[0,0], [0,0]];
     let c_len = c.len();
-    for j in 0..a.len(){
-        for l in 0..b.len(){
-            for k in 0..c_len{
+    for j in 0..2{
+        for l in 0..2{
+            for k in 0..2{
+                println!("{}{}{}",j,l,k);
                 let new_value;
                 let value = a.get(j).unwrap().get(k).unwrap() *
                     b.get(k).unwrap().get(l).unwrap();
-                {
+                { // its own scope for reading
                     let current_value = c.get(j).unwrap().get(l);
                     new_value = match current_value{
                         Some(current) => {current+value as i32}
                         None => value
                     };
                 }
-                c.get_mut(j).unwrap().insert(l, new_value)
+                c.get_mut(j).unwrap()[l]= new_value;
             }
         }
     }
