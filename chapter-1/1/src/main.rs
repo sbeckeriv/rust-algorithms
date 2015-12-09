@@ -1,3 +1,4 @@
+mod chap;
 fn main() {
     println!("Hello, world!");
     // code fragments page #21
@@ -13,15 +14,15 @@ fn main() {
     println!("max: {:?}", max);
 
     //Compute the average
-    let mut sum = 0 as u32;
-    let size = array.len() as u32;
+    let mut sum = 0;
+    let size = array.len();
     for n in &array{
         sum = sum + n;
     }
     match size{
         0 => println!("divide error"),
         _ => {
-            let avg:f64 = (sum as f64)/(size as f64);
+            let avg = (sum as f64)/(size as f64);
             println!("avg: {:?}", avg);
         }
     };
@@ -43,18 +44,16 @@ fn main() {
     let a = vec![vec![1,1], vec![2,2]];
     let b = vec![vec![3,3], vec![4,4]];
     let mut c = vec![[0,0], [0,0]];
-    let c_len = c.len();
     for j in 0..2{
         for l in 0..2{
             for k in 0..2{
-                println!("{}{}{}",j,l,k);
                 let new_value;
                 let value = a.get(j).unwrap().get(k).unwrap() *
                     b.get(k).unwrap().get(l).unwrap();
                 { // its own scope for reading
                     let current_value = c.get(j).unwrap().get(l);
                     new_value = match current_value{
-                        Some(current) => {current+value as i32}
+                        Some(current) => {current+value}
                         None => value
                     };
                 }
