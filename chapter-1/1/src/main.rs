@@ -61,6 +61,17 @@ fn main() {
             }
         }
     }
-    println!("matrix {:?}", c)
+    println!("matrix {:?}", c);
+    let y=chap::abs(0-1);
+    println!("abs {:?}", y);
+
+    let y=chap::abs_float(0.0-1.1);
+    println!("abs {:?}", y);
+    for n in 2..24{
+        println!("{}: {:?}",n, chap::is_prime(n))
+    }
+    println!("sqrt {:?}", chap::sqrt(33434.4));
+    println!("hypo {:?}", chap::hypo(12.0,5.0));
+    println!("h{:?}", chap::h(3));
 
 }
