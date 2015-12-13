@@ -1,4 +1,5 @@
 mod chap;
+use std::env;
 fn main() {
     println!("Hello, world!");
     // code fragments page #21
@@ -82,4 +83,8 @@ fn main() {
     chap::shuffle(&mut shuffle_me);
     println!("shuffle {:?}", shuffle_me);
 
+    let mut args:Vec<String> = env::args().collect();
+    args.remove(0);
+    let parse_args: Vec<u64> = args.iter().map(|arg| arg.parse::<u64>().unwrap()).collect();
+    println!("args {:?}", parse_args);
 }
