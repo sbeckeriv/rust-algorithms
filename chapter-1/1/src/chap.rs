@@ -80,5 +80,5 @@ fn rank_find(vec: &Vec<usize>, find: usize, min: usize, max: usize) -> bool{
 //page # 32
 extern crate rand;
 pub fn uni1(a: u64, b: u64) -> u64{
-     0//a + (rand::Rng::next_f64()*(b-a) as f64) as u64
+     a + (rand::random::<f64>()*(b-a) as f64) as u64
 }
