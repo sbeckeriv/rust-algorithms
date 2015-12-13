@@ -73,5 +73,8 @@ fn main() {
     println!("sqrt {:?}", chap::sqrt(33434.4));
     println!("hypo {:?}", chap::hypo(12.0,5.0));
     println!("h{:?}", chap::h(3));
+    let find_me = vec![1,2,3,4,5,6,7,8,9,10];
+    println!("rank{:?}", chap::rank(&find_me, 8));
+    println!("uni1{:?}", chap::uni1(3,16));
 
 }

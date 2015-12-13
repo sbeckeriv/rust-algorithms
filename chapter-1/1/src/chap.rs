@@ -17,11 +17,11 @@ pub fn abs_float(x: f64) -> f64{
 }
 
 pub fn is_prime(n: u64) -> bool {
-    if(n<2){
+    if n<2 {
         false
     } else{
         for count in 2..(n/2){
-            if(n%count==0){
+            if n%count==0 {
                 return false;
             }
         }
@@ -31,13 +31,13 @@ pub fn is_prime(n: u64) -> bool {
 
 use std::f64;
 pub fn sqrt(n: f64)-> f64{
-    if(n<0.0){
+    if n<0.0 {
         f64::NAN
     }else{
         let mut t= n.clone();
         let base = 10.0_f64;
         let err = base.powi(-15);
-        while ((t-(n/t)).abs() > (err*t)) {
+        while (t-(n/t)).abs() > (err*t) {
             t=(n/t+t)/2.0;
         }
         t
@@ -55,4 +55,30 @@ pub fn h(n: u64) -> f64{
         sum = sum+(1.0/i as f64)
     }
     sum
+}
+
+//page #25. close enough.
+//I would return a option instead of a bool.
+pub fn rank(vec: &Vec<usize>, find: usize) -> bool{
+    let max = vec.len();
+    rank_find(vec, find, 0, max)
+}
+
+fn rank_find(vec: &Vec<usize>, find: usize, min: usize, max: usize) -> bool{
+    let mid = min+((max-min)/2);
+    let mid_value = vec[mid];
+    if max==min {
+        false
+    }else if mid_value == find {
+        true
+    }else if mid_value < find {
+        rank_find(vec, find, mid, max)
+    }else{
+        rank_find(vec, find, min, mid)
+    }
+}
+//page # 32
+extern crate rand;
+pub fn uni1(a: u64, b: u64) -> u64{
+     0//a + (rand::Rng::next_f64()*(b-a) as f64) as u64
 }

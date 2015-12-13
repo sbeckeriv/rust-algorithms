@@ -2,3 +2,5 @@
 name = "ch11"
 version = "0.1.0"
 authors = ["Stephen Becker IV <github@deathbyescalator.com>"]
+[dependencies]
+rand = "0.3"
