@@ -76,5 +76,10 @@ fn main() {
     let find_me = vec![1,2,3,4,5,6,7,8,9,10];
     println!("rank{:?}", chap::rank(&find_me, 8));
     println!("uni1 {:?}", chap::uni1(3,16));
+    println!("uni2 {:?}", chap::uni2(16));
+    let mut shuffle_me = vec![1,2,3,4,5,6,7,8,9,10];
+
+    chap::shuffle(&mut shuffle_me);
+    println!("shuffle {:?}", shuffle_me);
 
 }

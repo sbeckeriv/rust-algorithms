@@ -79,6 +79,25 @@ fn rank_find(vec: &Vec<usize>, find: usize, min: usize, max: usize) -> bool{
 }
 //page # 32
 extern crate rand;
+use self::rand::Rng;
 pub fn uni1(a: u64, b: u64) -> u64{
      a + (rand::random::<f64>()*(b-a) as f64) as u64
+}
+
+pub fn uni2(a: u64) -> u64{
+     (rand::random::<f64>()*a as f64) as u64
+}
+
+pub fn discrete(a: u64){
+    //nah
+}
+
+// not the same as the book
+pub fn shuffle(a: &mut Vec<usize>){
+    let mut rng = rand::thread_rng();
+    let max = a.len();
+    for i in 0..max{
+        let swapper = rng.gen::<usize>()%max;
+        a.swap(i,swapper);
+    }
 }
