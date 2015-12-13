@@ -1,4 +1,7 @@
 mod chap;
+extern crate rand;
+use rand::Rng;
+use rand::distributions::{IndependentSample, Range};
 use std::env;
 fn main() {
     println!("Hello, world!");
@@ -87,4 +90,9 @@ fn main() {
     args.remove(0);
     let parse_args: Vec<u64> = args.iter().map(|arg| arg.parse::<u64>().unwrap()).collect();
     println!("args {:?}", parse_args);
+    let mut rng = rand::thread_rng();
+    let between = Range::new(parse_args[1], parse_args[2]+1);
+    for i in 0..parse_args[0] {
+        println!("Rando {:?}: {:?}",i, between.ind_sample(&mut rng))
+    }
 }
