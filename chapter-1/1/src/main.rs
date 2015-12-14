@@ -3,6 +3,10 @@ extern crate rand;
 use rand::Rng;
 use rand::distributions::{IndependentSample, Range};
 use std::env;
+use std::io;
+use std::io::prelude::*;
+use std::process;
+
 fn main() {
     println!("Hello, world!");
     // code fragments page #21
@@ -88,11 +92,35 @@ fn main() {
 
     let mut args:Vec<String> = env::args().collect();
     args.remove(0);
-    let parse_args: Vec<u64> = args.iter().map(|arg| arg.parse::<u64>().unwrap()).collect();
+    let parse_args: Vec<u64> = args.iter().
+        map(|arg| arg.parse::<u64>().unwrap()).collect();
     println!("args {:?}", parse_args);
     let mut rng = rand::thread_rng();
     let between = Range::new(parse_args[1], parse_args[2]+1);
     for i in 0..parse_args[0] {
-        println!("Rando {:?}: {:?}",i, between.ind_sample(&mut rng))
+        println!("Rando {:?}: {:?}",i, between.ind_sample(&mut rng));
+    }
+
+    let mut sum = 0;
+    let mut count = 0;
+    println!("Enter a negative number to exit");
+    let stdin = io::stdin();
+    for line in stdin.lock().lines() {
+        let string = line.unwrap();
+        match string.parse::<i64>(){
+            Ok(num) => {
+                if num >= 0{
+                    count = 1+count;
+                    sum = sum + num;
+                    println!("Sum {:?} of {:?} numbers", sum,count);
+                }else{
+                    println!("Average {:?}", (sum as f64/count as f64) as f64);
+                    process::exit(1);
+                }
+            },
+            Err(_) =>{
+                println!("Could not process number");
+            }
+        }
     }
 }
