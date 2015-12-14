@@ -1,6 +1,5 @@
 mod chap;
 extern crate rand;
-use rand::Rng;
 use rand::distributions::{IndependentSample, Range};
 use std::env;
 use std::io;
@@ -83,13 +82,17 @@ fn main() {
     println!("h{:?}", chap::h(3));
     let find_me = vec![1,2,3,4,5,6,7,8,9,10];
     println!("rank{:?}", chap::rank(&find_me, 8));
+    println!("rank{:?}", chap::rank(&find_me, 18));
     println!("uni1 {:?}", chap::uni1(3,16));
     println!("uni2 {:?}", chap::uni2(16));
-    let mut shuffle_me = vec![1,2,3,4,5,6,7,8,9,10];
 
+
+    println!("rank_loop {:?}", chap::rank_loop(&find_me, 8));
+    println!("rank_loop {:?}", chap::rank_loop(&find_me, 18));
+
+    let mut shuffle_me = vec![1,2,3,4,5,6,7,8,9,10];
     chap::shuffle(&mut shuffle_me);
     println!("shuffle {:?}", shuffle_me);
-
     let mut args:Vec<String> = env::args().collect();
     args.remove(0);
     let parse_args: Vec<u64> = args.iter().

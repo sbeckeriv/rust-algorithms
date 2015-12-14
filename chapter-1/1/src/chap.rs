@@ -66,8 +66,9 @@ pub fn rank(vec: &Vec<usize>, find: usize) -> bool{
 
 fn rank_find(vec: &Vec<usize>, find: usize, min: usize, max: usize) -> bool{
     let mid = min+((max-min)/2);
+    println!("{:?} {:?} {:?}",max, min, mid);
     let mid_value = vec[mid];
-    if max==min {
+    if (max-min)==1 {
         false
     }else if mid_value == find {
         true
@@ -100,4 +101,22 @@ pub fn shuffle(a: &mut Vec<usize>){
         let swapper = rng.gen::<usize>()%max;
         a.swap(i,swapper);
     }
+}
+
+//page 47
+pub fn rank_loop(vec: &Vec<usize>, key: usize) -> bool{
+    let mut low = 0;
+    let mut high = vec.len();
+    while (high-low) > 1 {
+        let mid_index = low+(high-low)/2;
+        let mid = vec[mid_index];
+        if mid == key{
+            return true;
+        } else if mid < key{
+            low = mid_index;
+        }else{
+            high = mid_index;
+        }
+    }
+    false
 }
