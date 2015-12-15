@@ -66,7 +66,6 @@ pub fn rank(vec: &Vec<usize>, find: usize) -> bool{
 
 fn rank_find(vec: &Vec<usize>, find: usize, min: usize, max: usize) -> bool{
     let mid = min+((max-min)/2);
-    println!("{:?} {:?} {:?}",max, min, mid);
     let mid_value = vec[mid];
     if (max-min)==1 {
         false
