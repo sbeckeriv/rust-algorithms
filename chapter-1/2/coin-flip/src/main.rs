@@ -1,4 +1,5 @@
 extern crate rand;
+use std::cmp::Ordering;
 
 #[derive(Debug)]
 struct Counter {
@@ -19,6 +20,26 @@ impl Counter {
     }
 }
 
+impl Ord for Counter {
+        fn cmp(&self, other: &Self) -> Ordering {
+                    self.count.cmp(&other.count)
+                            }
+}
+
+impl PartialOrd for Counter{
+        fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+                    Some(self.cmp(other))
+                            }
+}
+
+impl PartialEq for Counter{
+        fn eq(&self, other: &Self) -> bool {
+                    self.count == other.count
+                            }
+}
+
+impl Eq for Counter { }
+
 use rand::distributions::{IndependentSample, Range};
 fn main() {
     let mut rng = rand::thread_rng();
@@ -38,6 +59,7 @@ fn main() {
     println!("Heads {:?}", heads);
     println!("Tails {:?}", tails);
     println!("delta {:?}", (heads.count-tails.count).abs());
+    println!("max {:?}", std::cmp::max(heads,tails));
 
 
     let mut counters: Vec<Counter> = vec![Counter::new("1"),
