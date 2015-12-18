@@ -21,45 +21,45 @@ impl Counter {
 }
 
 impl Ord for Counter {
-        fn cmp(&self, other: &Self) -> Ordering {
-                    self.count.cmp(&other.count)
-                            }
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.count.cmp(&other.count)
+    }
 }
 
-impl PartialOrd for Counter{
-        fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-                    Some(self.cmp(other))
-                            }
+impl PartialOrd for Counter {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
 }
 
-impl PartialEq for Counter{
-        fn eq(&self, other: &Self) -> bool {
-                    self.count == other.count
-                            }
+impl PartialEq for Counter {
+    fn eq(&self, other: &Self) -> bool {
+        self.count == other.count
+    }
 }
 
-impl Eq for Counter { }
+impl Eq for Counter {}
 
 use rand::distributions::{IndependentSample, Range};
 fn main() {
     let mut rng = rand::thread_rng();
-    //arg parsing in 1.1 code
-    let t=5;
+    // arg parsing in 1.1 code
+    let t = 5;
     let mut heads = Counter::new("heads");
     let mut tails = Counter::new("tails");
-    let float_range = Range::new(0.0,1.0);
-    for _ in 0..t+1{
-        if float_range.ind_sample(&mut rng)>0.5{
+    let float_range = Range::new(0.0, 1.0);
+    for _ in 0..t + 1 {
+        if float_range.ind_sample(&mut rng) > 0.5 {
             heads.increment();
-        }else{
+        } else {
             tails.increment();
         }
     }
 
     println!("Heads {:?}", heads);
     println!("Tails {:?}", tails);
-    println!("delta {:?}", (heads.count-tails.count).abs());
-    println!("max {:?}", std::cmp::max(heads,tails));
+    println!("delta {:?}", (heads.count - tails.count).abs());
+    println!("max {:?}", std::cmp::max(heads, tails));
 
 
     let mut counters: Vec<Counter> = vec![Counter::new("1"),
