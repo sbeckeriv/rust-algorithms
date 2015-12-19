@@ -4,7 +4,8 @@ use std::env;
 use std::path::Path;
 use std::io::prelude::*;
 use std::fs::File;
-
+//page 99
+//printf one | cargo run two
 fn main() {
     // is there a better way to do this?
     let mut arguments: Vec<String> = env::args().collect();
