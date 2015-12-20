@@ -4,8 +4,8 @@ use std::env;
 use std::path::Path;
 use std::io::prelude::*;
 use std::fs::File;
-//page 99
-//printf one | cargo run two
+// page 99
+// printf one | cargo run two
 fn main() {
     // is there a better way to do this?
     let mut arguments: Vec<String> = env::args().collect();
@@ -19,26 +19,26 @@ fn main() {
     let whitelist = whitelist::StaticSetOfInts::new(num_array);
 
     let mut input = String::new();
-    loop{
+    loop {
         match io::stdin().read_line(&mut input) {
             Ok(_) => {
-                if input.is_empty(){
-                    break
+                if input.is_empty() {
+                    break;
                 }
                 {
-                let mut trimmed = input.trim();
-                match trimmed.parse::<u64>() {
-                    Ok(num) => {
-                        if !whitelist.contains(num) {
-                            println!("{:?}", trimmed);
+                    let mut trimmed = input.trim();
+                    match trimmed.parse::<u64>() {
+                        Ok(num) => {
+                            if !whitelist.contains(num) {
+                                println!("{:?}", trimmed);
+                            }
                         }
+                        Err(num) => println!("Could not parse: {:?}", trimmed),
                     }
-                    Err(num) => println!("Could not parse: {:?}", trimmed),
-                }
                 }
                 input.clear()
             }
-            Err(error) => {break}
+            Err(error) => break,
         }
     }
 }
