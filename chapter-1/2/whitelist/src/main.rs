@@ -25,15 +25,16 @@ fn main() {
                 if input.is_empty(){
                     break
                 }
-                input.trim();
-                println!("{:?}", input);
-                match input.parse::<u64>() {
+                {
+                let mut trimmed = input.trim();
+                match trimmed.parse::<u64>() {
                     Ok(num) => {
                         if !whitelist.contains(num) {
-                            println!("{:?}", input);
+                            println!("{:?}", trimmed);
                         }
                     }
-                    Err(num) => println!("Could not parse: {:?}", input),
+                    Err(num) => println!("Could not parse: {:?}", trimmed),
+                }
                 }
                 input.clear()
             }
