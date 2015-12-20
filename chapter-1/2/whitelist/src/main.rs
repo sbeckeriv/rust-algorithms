@@ -19,20 +19,18 @@ fn main() {
     let mut num_array = buffer.lines().map(|num| num.parse::<u64>().unwrap()).collect();
     let whitelist = whitelist::StaticSetOfInts::new(num_array);
     let mut stdin_lines = stdin_lines::StdinLines::new();
-        for input in stdin_lines{
-            if input.is_empty() {
-                break;
-            }
-            {
-                let mut trimmed = input.trim();
-                match trimmed.parse::<u64>() {
-                    Ok(num) => {
-                        if !whitelist.contains(num) {
-                            println!("{:?}", trimmed);
-                        }
-                    }
-                    Err(num) => println!("Could not parse: {:?}", trimmed),
+    for input in stdin_lines {
+        if input.is_empty() {
+            break;
+        }
+        let mut trimmed = input.trim();
+        match trimmed.parse::<u64>() {
+            Ok(num) => {
+                if !whitelist.contains(num) {
+                    println!("{:?}", trimmed);
                 }
             }
+            Err(num) => println!("Could not parse: {:?}", trimmed),
         }
+    }
 }
