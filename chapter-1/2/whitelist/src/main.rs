@@ -1,4 +1,5 @@
 mod whitelist;
+mod stdin_lines;
 use std::io;
 use std::env;
 use std::path::Path;
@@ -17,28 +18,21 @@ fn main() {
     open_file.read_to_string(&mut buffer).unwrap();
     let mut num_array = buffer.lines().map(|num| num.parse::<u64>().unwrap()).collect();
     let whitelist = whitelist::StaticSetOfInts::new(num_array);
-
-    let mut input = String::new();
-    loop {
-        match io::stdin().read_line(&mut input) {
-            Ok(_) => {
-                if input.is_empty() {
-                    break;
-                }
-                {
-                    let mut trimmed = input.trim();
-                    match trimmed.parse::<u64>() {
-                        Ok(num) => {
-                            if !whitelist.contains(num) {
-                                println!("{:?}", trimmed);
-                            }
-                        }
-                        Err(num) => println!("Could not parse: {:?}", trimmed),
-                    }
-                }
-                input.clear()
+    let mut stdin_lines = stdin_lines::StdinLines::new();
+        for input in stdin_lines{
+            if input.is_empty() {
+                break;
             }
-            Err(error) => break,
+            {
+                let mut trimmed = input.trim();
+                match trimmed.parse::<u64>() {
+                    Ok(num) => {
+                        if !whitelist.contains(num) {
+                            println!("{:?}", trimmed);
+                        }
+                    }
+                    Err(num) => println!("Could not parse: {:?}", trimmed),
+                }
+            }
         }
-    }
 }
