@@ -19,17 +19,25 @@ fn main() {
     let whitelist = whitelist::StaticSetOfInts::new(num_array);
 
     let mut input = String::new();
-    match io::stdin().read_line(&mut input) {
-        Ok(_) => {
-            match input.parse::<u64>() {
-                Ok(num) => {
-                    if !whitelist.contains(num) {
-                        println!("{}", input);
-                    }
+    loop{
+        match io::stdin().read_line(&mut input) {
+            Ok(_) => {
+                if input.is_empty(){
+                    break
                 }
-                Err(num) => println!("Could not parse:{:?}", num),
+                input.trim();
+                println!("{:?}", input);
+                match input.parse::<u64>() {
+                    Ok(num) => {
+                        if !whitelist.contains(num) {
+                            println!("{:?}", input);
+                        }
+                    }
+                    Err(num) => println!("Could not parse: {:?}", input),
+                }
+                input.clear()
             }
+            Err(error) => {break}
         }
-        Err(error) => {}
     }
 }
