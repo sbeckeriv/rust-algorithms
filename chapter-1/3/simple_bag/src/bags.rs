@@ -21,12 +21,18 @@ impl<T> Ziploc<T> {
         self.data.len()
     }
 }
-
-impl<T> IntoIterator for Ziploc<T> {
+// impl<T> IntoIterator for Ziploc<T> {
+// type Item = T;
+// type IntoIter = ::std::vec::IntoIter<T>;
+//
+// fn into_iter(self) -> Self::IntoIter {
+// self.data.into_iter()
+// }
+// }
+//
+impl<T> Iterator for Ziploc<T> {
     type Item = T;
-    type IntoIter = ::std::vec::IntoIter<T>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        self.data.into_iter()
+    fn next(&mut self) -> Option<Self::Item> {
+        self.data.iter().next()
     }
 }
