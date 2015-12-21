@@ -20,11 +20,9 @@ fn main() {
     println!("Sum:  {:?}", sum);
     let mean = sum as f64/n;
     println!("Mean: {:?}", mean);
-    /*
-       let std_sum = numbers.into_iter().fold(0 as f64, |acc, item|
-       acc + ((item as f64-mean) * (item as f64-mean))) as f64;
-       let std = ((sum/(n-1 as f64)) as f64).sqrt();
-       println!("Std : {:?}", std);
-       */
+    let std_sum = numbers.into_iter().fold(0 as f64, |acc, item|
+                                           acc + ((item -mean) * (item -mean))) as f64;
+    let std = ((sum/(n-1 as f64)) as f64).sqrt();
+    println!("Std : {:?}", std);
 }
 

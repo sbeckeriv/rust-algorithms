@@ -30,9 +30,11 @@ impl<T> Ziploc<T> {
 // }
 // }
 //
-impl<T> Iterator for Ziploc<T> {
-    type Item = T;
-    fn next(&mut self) -> Option<Self::Item> {
-        self.data.iter().next()
+impl<'a, T> IntoIterator for &'a Ziploc<T> {
+    type Item = &'a T;
+    type IntoIter = ::std::slice::Iter<'a, T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.data.iter()
     }
 }
