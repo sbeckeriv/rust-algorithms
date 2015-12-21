@@ -31,9 +31,12 @@ impl<'a, T> Ziploc<'a, T> {
 // }
 //
 impl<'a, T> Iterator for Ziploc<'a, T> {
-    type Item = T;
+    type Item = &'a T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        self.data.iter().next()
+        match self.data.iter().next() {
+            Some(n) => Some(n),
+            None => None,
+        }
     }
 }
