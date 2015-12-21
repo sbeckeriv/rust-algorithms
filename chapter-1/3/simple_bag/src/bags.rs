@@ -1,15 +1,15 @@
-pub struct Ziploc<T> {
-    data: Vec<T>,
+pub struct Ziploc<'a, T: 'a> {
+    data: Vec<&'a T>,
 }
 // Thoughts
 // new with capacity much like vec
 // the code example does math. I could limit T to anything that implements math values?
-impl<T> Ziploc<T> {
-    pub fn new() -> Ziploc<T> {
+impl<'a, T> Ziploc<'a, T> {
+    pub fn new() -> Ziploc<'a, T> {
         Ziploc { data: Vec::new() }
     }
 
-    pub fn add(&mut self, item: T) {
+    pub fn add(&mut self, item: &'a T) {
         self.data.push(item);
     }
 
@@ -21,12 +21,19 @@ impl<T> Ziploc<T> {
         self.data.len()
     }
 }
-
-impl<T> IntoIterator for Ziploc<T> {
+// impl<T> IntoIterator for Ziploc<T> {
+// type Item = T;
+// type IntoIter = ::std::vec::IntoIter<T>;
+//
+// fn into_iter(self) -> Self::IntoIter {
+// self.data.into_iter()
+// }
+// }
+//
+impl<'a, T> Iterator for Ziploc<'a, T> {
     type Item = T;
-    type IntoIter = ::std::vec::IntoIter<T>;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.data.into_iter()
+    fn next(&mut self) -> Option<Self::Item> {
+        self.data.iter().next()
     }
 }
