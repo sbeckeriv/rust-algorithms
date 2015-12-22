@@ -21,6 +21,11 @@ impl<T> Ziploc<T> {
         self.data.len()
     }
 }
+// //So this version returns a reference to the thing.
+// https://gist.github.com/anonymous/d6eb9a2709e79d69cd43
+// mbrubeck: sbeckeriv: Vec<T> has three different standard iterators
+// [3:56pm] mbrubeck: sbeckeriv: vec.iter() yields &T, vec.iter_mut() yields &mut T, and vec.into_iter() yields T
+// [3:58pm] mbrubeck: And there are three different IntoIterator implementations, corresponding to each of thes.
 // impl<T> IntoIterator for Ziploc<T> {
 // type Item = T;
 // type IntoIter = ::std::vec::IntoIter<T>;
