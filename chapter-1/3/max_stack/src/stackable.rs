@@ -4,7 +4,7 @@ pub struct MaxStack<T> {
 }
 
 impl<T> MaxStack<T> {
-    fn new(max: usize) -> MaxStack<T> {
+    pub fn new(max: usize) -> MaxStack<T> {
         MaxStack {
             max: max,
             data: Vec::new(),
