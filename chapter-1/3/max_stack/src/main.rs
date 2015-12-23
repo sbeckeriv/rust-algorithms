@@ -13,7 +13,7 @@ fn main() {
             }
         } else {
             match stack.pop() {
-                Some(out) => println!("{}", out),
+                Some(out) => print!("{} ", out),
                 None => println!("Stack empty"),
             }
         }
