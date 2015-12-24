@@ -19,10 +19,7 @@ fn main() {
         }
     }
     println!("{} left on stack", stack.size());
-    for i in stack{
+    for i in &stack{
         println!("{}", i);
     }
-
-
-
 }

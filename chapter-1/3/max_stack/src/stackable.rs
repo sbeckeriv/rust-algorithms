@@ -3,27 +3,31 @@ pub struct MaxStack<T> {
     data: Vec<T>,
 }
 
-pub struct MaxStackIterator<'a, T> {
+pub struct MaxStackIterator<'a, T: 'a> {
     current_pos: usize,
     object: &'a MaxStack<T>,
 }
 
 impl<'a, T> Iterator for MaxStackIterator<'a, T> {
-    type Item = T;
+    type Item = &'a T;
     fn next(&mut self) -> Option<Self::Item> {
-        let pos = self.object.data.len() - 1 - self.current_pos;
-        match self.object.data.get(pos) {
-            Some(item) => {
-                self.current_pos = self.current_pos + 1;
-                Some(item)
+        let pos = self.object.data.len() as isize - 1 - self.current_pos as isize;
+        if pos >= 0 {
+            match self.object.data.get(pos as usize) {
+                Some(item) => {
+                    self.current_pos = self.current_pos + 1;
+                    Some(item)
+                }
+                None => None,
             }
-            None => None,
+        } else {
+            None
         }
     }
 }
 
 impl<'a, T> IntoIterator for &'a MaxStack<T> {
-    type Item = T;
+    type Item = &'a T;
     type IntoIter = MaxStackIterator<'a, T>;
 
     fn into_iter(self) -> Self::IntoIter {
