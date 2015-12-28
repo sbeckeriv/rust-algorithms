@@ -8,21 +8,13 @@ impl<T> LinkList<T> {
         LinkList { head: None }
     }
     pub fn append(&mut self, item: T) {
-        if self.head.is_some() {
-            let mut current = self.head.as_ref();
-            loop {
-                // 5 | 4 | none
-                match current.unwrap().next {
-                    Some(_) => current = current.unwrap().next.as_ref(),
-                    None => {
-                        let mut new_node = LinkNode::new(item);
-                        let mut x = current.as_mut().unwrap();
-                        x.set_next(Box::new(new_node));
-                    }
-                }
+        let mut head = self.head.unwrap();
+        loop {
+            match head.next {
+                Some(_) => head = head.next.unwrap(),
+                None => {}
             }
-        } else {
-            self.head = Some(Box::new(LinkNode::new(item)));
+
         }
     }
 }
