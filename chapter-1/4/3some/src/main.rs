@@ -34,7 +34,7 @@ fn main() {
     let file_string = arguments.pop().unwrap();
     let spent = timer::record(||{
         let x = read_ints(file_string);
-        count(x);
+        println!("{:?}",count(x));
     });
     println!("{:?}", spent);
 
