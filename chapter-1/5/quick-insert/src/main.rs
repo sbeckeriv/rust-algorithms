@@ -6,10 +6,15 @@ fn main() {
     let mut count: Option<usize> = None;
     let mut union= union_find::UF::new(&0);
     let t = time::now();
+    let mut line_count = 1;
     for line in reader {
         let trimmed = line.trim();
         if trimmed != "" {
             if count.is_some() {
+                line_count += 1;
+                if line_count %100000==0{
+                    println!("Lines: {} Time: {:?}", line_count, time::now()-t);
+                }
                 let nums: Vec<&str> = trimmed.split_whitespace().collect();
                 let left_num: usize = nums[0].parse::<usize>().unwrap();
                 let right_num: usize = nums[1].parse::<usize>().unwrap();
