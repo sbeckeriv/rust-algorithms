@@ -1,17 +1,22 @@
+extern crate time;
 mod union_find;
 mod stdin_lines;
 fn main() {
     let reader = stdin_lines::StdinLines::new();
     let mut count: Option<usize> = None;
-    let mut union;
+    let mut union= union_find::UF::new(&0);
+    let t = time::now();
     for line in reader {
-        if line != "\n" {
+        let trimmed = line.trim();
+        if trimmed != "" {
             if count.is_some() {
-                let nums: Vec<&str> = line.split_whitespace().collect();
+                let nums: Vec<&str> = trimmed.split_whitespace().collect();
                 let left_num: usize = nums[0].parse::<usize>().unwrap();
                 let right_num: usize = nums[1].parse::<usize>().unwrap();
+                if !union.connected(left_num, right_num){
+                    union.union(left_num, right_num);
+                }
             }else{
-                let trimmed = line.trim();
                 count = Some(trimmed.parse::<usize>().unwrap());
                 union = union_find::UF::new(&count.unwrap());
             }
@@ -19,5 +24,5 @@ fn main() {
             break;
         }
     }
-    println!("Hello, world!");
+    println!("{} node/s in {:?}", union.count, time::now()-t);
 }
