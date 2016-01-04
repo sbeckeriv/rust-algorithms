@@ -21,6 +21,7 @@ fn read_file_chars(file_string: String) -> Vec<String> {
     open_file.read_to_string(&mut buffer).unwrap();
     buffer.split_whitespace().map(|num| num.to_string()).collect::<Vec<String>>()
 }
+
 fn main() {
     let mut arguments: Vec<String> = env::args().collect();
     let file_string = arguments.pop().unwrap();
