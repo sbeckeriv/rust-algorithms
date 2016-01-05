@@ -1,10 +1,10 @@
 #[derive(Debug)]
-pub struct Algo {
-    vec: Vec<usize>,
+pub struct Algo<'a> {
+    vec: &'a mut Vec<usize>,
 }
 
-impl Algo {
-    pub fn new(vec: Vec<usize>) -> Self {
+impl<'a> Algo<'a> {
+    pub fn new(vec: &'a mut Vec<usize>) -> Self {
         Algo { vec: vec }
     }
     pub fn len(&self) -> usize {
