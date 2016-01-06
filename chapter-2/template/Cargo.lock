@@ -2,6 +2,14 @@
 name = "template"
 version = "0.1.0"
 dependencies = [
+ "algorithms-helpers 0.1.0 (git+https://github.com/sbeckeriv/rust-algorithms-helpers)",
+]
+
+[[package]]
+name = "algorithms-helpers"
+version = "0.1.0"
+source = "git+https://github.com/sbeckeriv/rust-algorithms-helpers#6167c80dcfb78ab74f4d5585a9b31d86ccc83c0d"
+dependencies = [
  "time 0.1.34 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 

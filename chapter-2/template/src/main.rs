@@ -1,5 +1,5 @@
-mod stdin_lines;
-mod timer;
+extern crate algorithms_helpers;
+use algorithms_helpers::{timer,stdin_lines};
 mod sort;
 use std::env;
 use std::path::Path;
