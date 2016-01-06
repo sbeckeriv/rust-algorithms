@@ -20,8 +20,6 @@ impl Algo {
     }
     pub fn sort(&mut self) {
         let n = self.vec.len();
-        println!("n:{}", n);
-        println!("n/3:{}", n / 3);
         let mut h = 1;
         loop {
             if h >= n / 3 {
@@ -30,20 +28,16 @@ impl Algo {
             h = 3 * h + 1;
         }
         while h >= 1 {
-            println!("h:{}", h);
             for i in h..n {
-                println!("i:{}", i);
                 let mut j = i;
                 while self.vec[j] < self.vec[j - h] {
+                    self.vec.swap(j, j - h);
                     j -= h;
                     if j < h {
                         break;
                     }
-                    println!("j:{}", j);
-                    self.vec.swap(j, j - h);
                 }
             }
-            println!("{:?}", self.vec);
             h = h / 3;
         }
 
