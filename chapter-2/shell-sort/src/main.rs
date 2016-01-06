@@ -1,4 +1,5 @@
-mod timer;
+extern crate algorithms_helpers;
+use algorithms_helpers::timer;
 mod sort;
 use std::env;
 use std::path::Path;
