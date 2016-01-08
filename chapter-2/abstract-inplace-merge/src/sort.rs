@@ -25,49 +25,26 @@ impl Algo {
     fn merge(&mut self, lo: usize, mid: usize, hi: usize) {
         let mut i = lo;
         let mut j = mid + 1;
-        for k in lo..hi {
+        for k in lo..hi + 1 {
             self.aux[k] = self.vec[k].clone();
         }
 
-        for k in lo..hi {
+        for k in lo..hi + 1 {
             if i > mid {
-                self.vec[k] == self.aux[j].clone();
+                self.vec[k] = self.aux[j].clone();
                 j += 1;
             } else if j > hi {
-                self.vec[k] == self.aux[i].clone();
+                self.vec[k] = self.aux[i].clone();
                 i += 1;
             } else if self.aux[j] < self.aux[i] {
                 self.vec[k] = self.aux[j].clone();
                 j += 1;
             } else {
-                self.vec[k] == self.aux[i].clone();
+                self.vec[k] = self.aux[i].clone();
                 i += 1;
             }
         }
 
     }
-    pub fn sort(&mut self) {
-        let n = self.vec.len();
-        let mut h = 1;
-        loop {
-            if h >= n / 3 {
-                break;
-            }
-            h = 3 * h + 1;
-        }
-        while h >= 1 {
-            for i in h..n {
-                let mut j = i;
-                while self.vec[j] < self.vec[j - h] {
-                    self.vec.swap(j, j - h);
-                    j -= h;
-                    if j < h {
-                        break;
-                    }
-                }
-            }
-            h = h / 3;
-        }
-
-    }
+    pub fn sort(&mut self) {}
 }
