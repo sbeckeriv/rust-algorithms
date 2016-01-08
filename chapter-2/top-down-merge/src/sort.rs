@@ -27,16 +27,14 @@ impl Algo {
         sorted
     }
     fn merge(&mut self, lo: usize, mid: usize, hi: usize) {
-
         let mut i = lo;
-        let mut j = mid;
-
+        let mut j = mid + 1;
         for k in lo..hi + 1 {
             self.aux[k] = self.vec[k].clone();
         }
         for k in lo..hi + 1 {
             if i > mid {
-                self.vec[k] == self.aux[j].clone();
+                self.vec[k] = self.aux[j].clone();
                 j += 1;
             } else if j > hi {
                 self.vec[k] = self.aux[i].clone();
@@ -51,15 +49,12 @@ impl Algo {
         }
     }
     pub fn sort(&mut self, lo: usize, hi: usize) {
-
-        if hi > lo {
-            let mid = lo + (hi - lo) / 2;
-            if mid == 0 {
-                return;
-            }
-            self.sort(lo, mid);
-            self.sort(mid + 1, hi);
-            self.merge(lo, mid, hi);
+        if hi <= lo {
+            return;
         }
+        let mid = lo + (hi - lo) / 2;
+        self.sort(lo, mid);
+        self.sort(mid + 1, hi);
+        self.merge(lo, mid, hi);
     }
 }
