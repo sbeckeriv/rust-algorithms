@@ -1,3 +1,5 @@
+#[macro_use]
+extern crate show;
 extern crate algorithms_helpers;
 use algorithms_helpers::timer;
 mod sort;

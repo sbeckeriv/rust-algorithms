@@ -5,9 +5,13 @@ pub struct Algo {
 }
 impl Algo {
     pub fn new(vec: Vec<String>) -> Self {
+        let mut aux = Vec::new();
+        for i in &vec {
+            aux.push(i.clone());
+        }
         Algo {
             vec: vec,
-            aux: Vec::new(),
+            aux: aux,
         }
     }
     pub fn len(&self) -> usize {
