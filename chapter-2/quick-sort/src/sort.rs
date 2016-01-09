@@ -32,19 +32,19 @@ impl<'a> Algo<'a> {
     fn partition(&mut self, lo: usize, hi: usize) -> usize {
         println!("par:: low:{} high:{} {}", lo, hi, self.vec.len());
         let mut i = lo;
-        let mut j = hi + 1;
+        let mut j = hi;
         let mut v = self.vec[lo];
         loop {
             i += 1;
-            println!("{}", i);
+            println!("i{}", i);
             while self.vec[i] < v {
-                println!("{}", i);
-                if i == hi {
+                println!("i{}", i);
+                if i == hi - 1 {
                     break;
                 }
                 i += 1;
             }
-            println!("{}", j);
+            println!("j{}", j);
             while j >= 0 && v < self.vec[j] {
                 if j == lo {
                     break;
