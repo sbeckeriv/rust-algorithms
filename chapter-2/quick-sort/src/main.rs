@@ -20,7 +20,7 @@ fn main() {
     let len = vec.len()-1;
     let mut sorter = sort::Algo::new(&mut vec);
     let spent = timer::record(|| {
-        sorter.sort(0, len);
+        sorter.sort(0, len-1);
     });
     println!("{:?}", sorter);
     println!("{:?}", sorter.is_sorted());

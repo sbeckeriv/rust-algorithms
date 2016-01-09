@@ -20,27 +20,32 @@ impl<'a> Algo<'a> {
         sorted
     }
     pub fn sort(&mut self, low: usize, high: usize) {
-        println!("low:{} high:{}", low, high);
-        if high > low {
-            let j = self.partition(low, high);
-            self.sort(low, j - 1);
-            self.sort(j + 1, high);
+        if low >= high {
+            return;
         }
+        println!("low:{} high:{}", low, high);
+        let j = self.partition(low, high);
+        self.sort(low, j - 1);
+        self.sort(j + 1, high);
     }
 
     fn partition(&mut self, lo: usize, hi: usize) -> usize {
-        println!("par:: low:{} high:{}", lo, hi);
+        println!("par:: low:{} high:{} {}", lo, hi, self.vec.len());
         let mut i = lo;
-        let mut j = hi;
+        let mut j = hi + 1;
         let mut v = self.vec[lo];
         loop {
+            i += 1;
+            println!("{}", i);
             while self.vec[i] < v {
+                println!("{}", i);
                 if i == hi {
                     break;
                 }
                 i += 1;
             }
-            while v < self.vec[j] {
+            println!("{}", j);
+            while j >= 0 && v < self.vec[j] {
                 if j == lo {
                     break;
                 }
@@ -49,8 +54,10 @@ impl<'a> Algo<'a> {
             if i == j {
                 break;
             }
+            println!("end{}::{}", i, j);
             self.vec.swap(i, j);
         }
+        println!("ends{}::{}", i, j);
         self.vec.swap(lo, j);
         j
     }
