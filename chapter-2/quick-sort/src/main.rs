@@ -5,12 +5,12 @@ use std::path::Path;
 use std::io::prelude::*;
 use std::fs::File;
 
-fn read_file_chars(file_string: String) -> Vec<usize> {
+fn read_file_chars(file_string: String) -> Vec<isize> {
     let file = Path::new(&file_string);
     let mut open_file = File::open(file).unwrap();
     let mut buffer = String::new();
     open_file.read_to_string(&mut buffer).unwrap();
-    buffer.split_whitespace().map(|num| num.parse::<usize>().unwrap()).collect::<Vec<usize>>()
+    buffer.split_whitespace().map(|num| num.parse::<isize>().unwrap()).collect::<Vec<isize>>()
 }
 
 fn main() {
@@ -18,7 +18,6 @@ fn main() {
     let file_string = arguments.pop().unwrap();
     let mut vec = read_file_chars(file_string);
     let len = vec.len()-1;
-    println!("{:?}", len);
     let mut sorter = sort::Algo::new(&mut vec);
     let spent = timer::record(|| {
         sorter.sort(0, len);

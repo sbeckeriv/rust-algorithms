@@ -1,10 +1,10 @@
 #[derive(Debug)]
 pub struct Algo<'a> {
-    vec: &'a mut Vec<usize>,
+    vec: &'a mut Vec<isize>,
 }
 
 impl<'a> Algo<'a> {
-    pub fn new(vec: &'a mut Vec<usize>) -> Self {
+    pub fn new(vec: &'a mut Vec<isize>) -> Self {
         Algo { vec: vec }
     }
     pub fn len(&self) -> usize {
@@ -24,15 +24,15 @@ impl<'a> Algo<'a> {
             return;
         }
         let j = self.partition(low, high);
-        self.sort(low, j - 1);
+        if j > 1 {
+            self.sort(low, j - 1);
+        }
         self.sort(j + 1, high);
     }
     fn partition(&mut self, lo: usize, hi: usize) -> usize {
-        println!("low:{} high:{}", lo, hi);
-        println!("{:?}", self.vec);
         let mut i = lo;
         let mut j = hi + 1;
-        let mut v = self.vec[i];
+        let mut v = self.vec[lo];
         loop {
             loop {
                 i += 1;
@@ -54,6 +54,5 @@ impl<'a> Algo<'a> {
         }
         self.vec.swap(lo, j);
         j
-
     }
 }
