@@ -22,7 +22,9 @@ fn main() {
     let spent = timer::record(|| {
         sorter.sort(0, len);
     });
-    println!("{:?}", sorter);
+    if len<50_000{
+        println!("{:?}", sorter);
+    }
     println!("{:?}", sorter.is_sorted());
     println!("{:?}", spent);
 }

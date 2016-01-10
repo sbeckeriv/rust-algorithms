@@ -2,11 +2,15 @@ use std::cmp::Ordering;
 #[derive(Debug)]
 pub struct Algo<'a> {
     vec: &'a mut Vec<isize>,
+    count: usize,
 }
 
 impl<'a> Algo<'a> {
     pub fn new(vec: &'a mut Vec<isize>) -> Self {
-        Algo { vec: vec }
+        Algo {
+            vec: vec,
+            count: 0,
+        }
     }
     pub fn len(&self) -> usize {
         self.vec.len()
@@ -21,6 +25,7 @@ impl<'a> Algo<'a> {
         sorted
     }
     pub fn sort(&mut self, lo: usize, hi: usize) {
+        self.count += 1;
         if hi <= lo {
             return;
         }
@@ -44,13 +49,13 @@ impl<'a> Algo<'a> {
                     i += 1;
                 }
             }
-            if lt > 0 {
-                self.sort(lo, lt - 1);
-            } else {
-                self.sort(lo, 0);
-            }
-
-            self.sort(gt + 1, hi);
         }
+
+        if lt > 0 {
+            self.sort(lo, lt - 1);
+        } else {
+            self.sort(lo, 0);
+        }
+        self.sort(gt + 1, hi);
     }
 }
