@@ -1,9 +1,14 @@
-struct Algo {
-    vec: Vec<String>,
+#[derive(Debug)]
+pub struct Algo<'a, T: 'a> {
+    vec: &'a mut Vec<T>,
+    count: usize,
 }
-impl Algo {
-    pub fn new() -> Self {
-        Algo { vec: Vec::new() }
+impl<'a, T: Ord> Algo<'a, T> {
+    pub fn new(vec: &'a mut Vec<T>) -> Self {
+        Algo {
+            vec: vec,
+            count: 0,
+        }
     }
     pub fn len(&self) -> usize {
         3

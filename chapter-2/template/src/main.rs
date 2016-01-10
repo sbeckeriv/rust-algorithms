@@ -35,7 +35,7 @@ fn main() {
     let file_string = arguments.pop().unwrap();
     let mut vec = read_file_chars(file_string);
     let len = vec.len()-1;
-    let mut sorter = sort::Algo::new(&mut vec);
+    let mut sorter = sort::Algo::<String>::new(&mut vec);
     let spent = timer::record(|| {
         //sorter.sort(0, len);
     });
