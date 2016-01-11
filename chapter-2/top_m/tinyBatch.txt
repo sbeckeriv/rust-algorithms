@@ -1,0 +1,16 @@
+Turing      6/17/1990   644
+vonNeumann  3/26/2002  4121
+Dijkstra    8/22/2007  2678
+vonNeumann  1/11/1999  4409
+Dijkstra   11/18/1995   837
+Hoare       5/10/1993  3229
+vonNeumann  2/12/1994  4732
+Hoare       8/18/1992  4381
+Turing      1/11/2002    66
+Thompson    2/27/2000  4747
+Turing      2/11/1991  2156
+Hoare       8/12/2003  1025
+vonNeumann 10/13/1993  2520
+Dijkstra    9/10/2000   708
+Turing     10/12/1993  3532
+Hoare       2/10/2005  4050
