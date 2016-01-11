@@ -1,6 +1,7 @@
 extern crate algorithms_helpers;
 use algorithms_helpers::{timer,stdin_lines};
 mod sort;
+mod pq;
 use std::env;
 use std::path::Path;
 use std::io::prelude::*;
