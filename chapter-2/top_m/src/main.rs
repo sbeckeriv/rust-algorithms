@@ -6,6 +6,7 @@ use std::env;
 use std::path::Path;
 use std::io::prelude::*;
 use std::fs::File;
+use pq::PQAlgoArray;
 
 #[derive(Debug)]
 #[derive(PartialEq, Eq, PartialOrd, Ord)]

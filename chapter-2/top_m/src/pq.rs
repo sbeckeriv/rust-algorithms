@@ -4,16 +4,18 @@ pub struct PQAlgo<'a, T: 'a> {
     count: usize,
 }
 
-impl<'a, T: Ord> PQAlgoArray<'a, T> for PQAlgo<'a, T> {}
-
-pub trait PQAlgoArray<'a, T: Ord> {
-    fn new(vec: &'a mut Vec<T>) -> Self {
+impl<'a, T: Ord> PQAlgoArray<'a, T> for PQAlgo<'a, T> {
+    fn new(vec: &'a mut Vec<T>) -> PQAlgo<'a, T> {
         PQAlgo {
             vec: vec,
             count: 0,
         }
     }
-    fn insert(&mut self, item: T) {
+}
+
+pub trait PQAlgoArray<'a, T: Ord> {
+    fn new(vec: &'a mut Vec<T>) -> Self;
+    fn insert(&'a mut self, item: T) {
         self.vec.push(item);
         self.vec.sort();
     }
