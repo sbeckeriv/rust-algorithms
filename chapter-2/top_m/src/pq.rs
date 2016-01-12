@@ -13,6 +13,7 @@ impl<'a, T: Ord> PQAlgo<'a, T> {
     }
     pub fn insert(&mut self, item: T) {
         self.vec.push(item);
+        self.vec.sort();
     }
     pub fn max(&self) -> &T {
         &self.vec[0]

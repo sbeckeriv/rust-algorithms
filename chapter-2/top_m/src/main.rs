@@ -46,15 +46,19 @@ fn main() {
     let file_string = arguments.pop().unwrap();
     let mut vec = read_file_lines(file_string);
     let len = vec.len() - 1;
-    println!("{:?}", vec);
-    let mut sorter = sort::Algo::<Transaction>::new(&mut vec);
-    let spent = timer::record(|| {
-        //sorter.sort(0, len);
-    });
+    let mut empty_vec: Vec<Transaction> = Vec::new();
+    let mut sorter = pq::PQAlgo::<Transaction>::new(&mut empty_vec);
     if len<50_000{
         println!("{:?}", sorter);
     }
-    println!("{:?}", sorter.is_sorted());
+    let spent = timer::record(|| {
+        for i in vec{
+            sorter.insert(i);
+        }
+        for i in 0..len+1{
+            let x = sorter.del_max();
+        }
+    });
     println!("{:?}", spent);
 
 }
