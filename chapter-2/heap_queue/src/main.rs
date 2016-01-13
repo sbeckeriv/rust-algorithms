@@ -47,6 +47,7 @@ fn main() {
     let mut vec = read_file_lines(file_string);
     let len = vec.len() - 1;
     let mut empty_vec: Vec<Transaction> = Vec::new();
+    empty_vec.push(Transaction(0, "trash".to_string())); // figure out how to remove this
     let mut sorter = pq::PQAlgo::<Transaction>::new(&mut empty_vec);
     if len<50_000{
         println!("{:?}", sorter);
