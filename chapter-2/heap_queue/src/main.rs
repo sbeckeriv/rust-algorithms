@@ -61,5 +61,8 @@ fn main() {
         }
     });
     println!("{:?}", spent);
+    if len<50_000{
+        println!("{:?}", sorter);
+    }
 
 }

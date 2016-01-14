@@ -13,7 +13,7 @@ impl<'a, T: Ord> PQAlgo<'a, T> {
     }
     pub fn insert(&mut self, item: T) {
         self.vec.push(item);
-        let len = self.vec.len();
+        let len = self.vec.len() - 1;
         self.swim(len);
     }
     pub fn del_max(&mut self) -> T {
@@ -34,6 +34,9 @@ impl<'a, T: Ord> PQAlgo<'a, T> {
         let mut move_index = index;
         while 2 * move_index <= self.vec.len() {
             let mut j = 2 * move_index;
+            if j + 1 >= self.vec.len() {
+                break;
+            }
             if j < self.vec.len() && self.vec[j] < self.vec[j + 1] {
                 j += 1;
             }
