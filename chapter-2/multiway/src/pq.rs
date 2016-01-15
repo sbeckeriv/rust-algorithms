@@ -1,4 +1,3 @@
-
 #[derive(Debug)]
 pub struct PQAlgo<'a, T: 'a> {
     vec: &'a mut Vec<T>,
@@ -18,17 +17,19 @@ impl<'a, T: Ord> PQAlgo<'a, T> {
     }
 
     // page 324
+    // doesnt seem to work
     pub fn sort(&mut self) {
         let mut len = self.vec.len();
         for k in (1..len / 2).rev() {
+            println!("{}", k);
             self.sink(k);
         }
         while (len > 1) {
+            println!("{}", len);
             len -= 1;
             self.vec.swap(1, len);
-            self.sink(1);
+            self.sink(len);
         }
-
     }
 
     pub fn del_max(&mut self) -> T {
